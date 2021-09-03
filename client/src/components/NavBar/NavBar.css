@@ -1,0 +1,41 @@
+.navbar {
+  height: 56px;
+  width: 100%;
+  background-color: #303236;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar nav {
+  height: 100%;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+}
+
+.list-item {
+  display: flex;
+  height: 100%;
+  width: auto;
+  align-items: center;
+}
+
+.list-item a {
+  color: white;
+  height: 100%;
+  padding: 16px 10px;
+  border-bottom: 4px solid transparent;
+}
+
+.list-item a:hover,
+.list-item a.active {
+  background-color: #808080;
+  color: white;
+}

@@ -1,0 +1,7 @@
+export const GET_POKEMONS = "GET_POKEMONS";
+export const GET_POKEMON_DETAIL = "GET_POKEMON_DETAIL";
+export const ADD_POKEMON = "ADD_POKEMON_FAVORITE";
+
+export const INCREMENT = "INCREMENT";
+export const DECREMENT = "DECREMENT";
+export const SET_LOADING = "SET_LOADING";
