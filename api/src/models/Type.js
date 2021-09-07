@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: true, //false
+      //timestamps
       createdAt: false,
       updatedAt: false,
     }
