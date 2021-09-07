@@ -5,7 +5,7 @@ import "./Landing.css";
 
 export default function Landing() {
   return (
-    <div className='container'>
+    <div className='container-landing'>
       <h1>Landing Pokemon</h1>
       <NavLink exact to='/home'>
         <h3> Inicia tu aventura</h3>

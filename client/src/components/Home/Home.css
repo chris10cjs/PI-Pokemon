@@ -1,20 +1,24 @@
-.cnt {
-  padding-top: 10px;
-}
-.form-container {
+.home_container {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-container button {
-  margin-left: 20px;
-}
-.label {
-  padding-right: 10px;
+.searchButtons_container {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
-button {
-  width: 150px;
-  height: 50px;
+.cards_container {
+  width: 80vw;
+  /* background-color: yellow; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
 }

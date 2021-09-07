@@ -9,11 +9,11 @@ export default function NavBar() {
         <ul className='list'>
           <li className='list-item'>
             <NavLink exact to='/'>
-              Welcome
+              LOGOAPP
             </NavLink>
             <NavLink to='/home'>Home Pokemon</NavLink>
             <NavLink to='/create'>Create Pokemon</NavLink>
-            <NavLink to='/detail'>Detail Pokemon</NavLink>
+            <NavLink to='/about'>About me</NavLink>
           </li>
         </ul>
       </nav>

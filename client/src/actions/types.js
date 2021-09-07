@@ -1,7 +1,11 @@
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMON_DETAIL = "GET_POKEMON_DETAIL";
+export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
+export const GET_TYPES = "GET_TYPES";
 export const ADD_POKEMON = "ADD_POKEMON_FAVORITE";
+export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const FILTER_BY_CREATOR = "FILTER_BY_CREATOR";
+export const SORT_BY_NAME = "SORT_BY_NAME";
+export const SORT_BY_ATTACK = "SORT_BY_ATTACK";
 
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
 export const SET_LOADING = "SET_LOADING";

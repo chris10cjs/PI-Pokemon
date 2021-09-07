@@ -1,62 +1,117 @@
-import React from "react";
-import { useSelector } from "react-redux";
-//import { NavLink } from "react-router-dom";
-import Buttons from "./Buttons";
 import "./Home.css";
+import React, { useEffect, useState } from "react";
+import Search from "../Search/Search";
+import Buttons from "../Search/Buttons";
+import Pagination from "../Pagination/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterByCreator,
+  filterByType,
+  getPokemonByName,
+  sortByAttack,
+  sortByName,
+} from "../../actions";
+import { Cards } from "../Cards/Cards";
 
-function Home() {
-  const { count, pokemons, isLoading } = useSelector((state) => ({
-    count: state.count,
+export default function Home() {
+  //--- STATES ---
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [cardPerPage] = useState(12);
+  const { pokemons, isLoading } = useSelector((state) => ({
     pokemons: state.pokemons,
     isLoading: state.isLoading,
   }));
+
+  useEffect(() => {
+    setPage(1);
+  }, [pokemons]);
+
+  //--- PAGINATION ---
+  const indexLast = page * cardPerPage; // pag1=9, pag2-pagN=12
+  const indexFirst = indexLast - cardPerPage; //
+  const currentPokemons = pokemons.slice(indexFirst, indexLast);
+
+  const pagination = (pageNumber) => {
+    setPage(pageNumber);
+  };
+
+  //--- FILTERS ---
+  function handleOnFilterByType(e) {
+    e.preventDefault();
+    dispatch(filterByType(e.target.value));
+  }
+
+  function handleOnFilterByCreator(e) {
+    e.preventDefault();
+    dispatch(filterByCreator(e.target.value));
+  }
+
+  //--- SORTS ---
+  function handleOnSortByName(e) {
+    e.preventDefault();
+    dispatch(sortByName(e.target.value));
+  }
+
+  function handleOnSortByAttack(e) {
+    e.preventDefault();
+    dispatch(sortByAttack(e.target.value));
+  }
+
+  //--- SEARCH ---
+  function handleOnChange(e) {
+    console.log("estoy buscando:    ", search);
+    e.preventDefault();
+    setSearch(e.target.value);
+  }
+
+  function handleOnClick(e) {
+    e.preventDefault();
+    console.log("el boton funciona y agarró el valor: ", search);
+    dispatch(getPokemonByName(search));
+    setSearch("");
+  }
+
+  //--- RENDER ---
   return (
-    <div className='container'>
-      <h1>Contador Pokemon: {count}</h1>
-      <Buttons />
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          {pokemons?.map((e) => {
-            return (
-              <div key={e.id}>
-                <img src={e.image} alt={e.name} />
-                <h3>{e.id}</h3>
-                <h3>{e.name}</h3>
-                <p>{e.type?.map((e) => e.name)}</p>
-              </div>
-            );
-          })}
-        </div>
-      )}
+    <div className='home_container'>
+      <div className='searchButtons_container'>
+        <Search
+          search={search}
+          handleOnChange={handleOnChange}
+          handleOnClick={handleOnClick}
+        />
+        <Buttons
+          handleOnFilterByType={handleOnFilterByType}
+          handleOnFilterByCreator={handleOnFilterByCreator}
+          handleOnSortByName={handleOnSortByName}
+          handleOnSortByAttack={handleOnSortByAttack}
+        />
+
+        <Pagination
+          page={page}
+          cardPerPage={cardPerPage}
+          pokemons={pokemons.length}
+          pagination={pagination}
+        ></Pagination>
+      </div>
+
+      <Cards isLoading={isLoading} currentPokemons={currentPokemons} />
+
+      <div className='searchButtons_container'>
+        <Pagination
+          cardPerPage={cardPerPage}
+          pokemons={pokemons.length}
+          pagination={pagination}
+        ></Pagination>
+      </div>
     </div>
   );
 }
 
-export default Home;
-
 /*
 
-
-
-
-
-
-
-
-
-
-
-  <Link to={"/details/" + e.id}>
-    <Card
-      name={e.name}
-      types={e.types.map((el) => el.name + " ")}
-      image={e.image}
-      key={e.id}
-    ></Card>
-  </Link>
- 
 
 
 

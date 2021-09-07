@@ -1,0 +1,15 @@
+.card_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(43, 43, 43, 0.575);
+  border-radius: 4px;
+  height: 300px;
+  width: 250px;
+}
+
+.card-img {
+  height: 100px;
+  width: 100px;
+}
