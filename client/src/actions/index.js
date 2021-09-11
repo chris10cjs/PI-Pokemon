@@ -5,11 +5,11 @@ import {
   GET_POKEMON_DETAIL,
   GET_POKEMON_NAME,
   GET_TYPES,
-  ADD_POKEMON,
   FILTER_BY_TYPE,
   FILTER_BY_CREATOR,
   SORT_BY_NAME,
   SORT_BY_ATTACK,
+  CLEAR_POKEMON,
 } from "./types";
 
 import { POKEMONS_URL, TYPES_URL } from "../config/constants";
@@ -34,7 +34,8 @@ export function getPokemonByName(name) {
       .then((res) => res.data)
       .then((pokemon) => {
         dispatch({ type: GET_POKEMON_NAME, payload: pokemon });
-      });
+      })
+      .catch(() => alert("pokemon not found"));
 }
 
 export function getPokemons() {
@@ -52,19 +53,24 @@ export function getPokemons() {
 
 export function getTypes() {
   return async (dispatch) => {
-    // dispatch({ type: SET_LOADING, payload: true });
     await axios
       .get(TYPES_URL)
       .then((res) => res.data)
       .then((pokemons) => {
         dispatch({ type: GET_TYPES, payload: pokemons });
-        // dispatch({ type: SET_LOADING, payload: false });
       });
   };
 }
 
-export function addPokemon(payload) {
-  return { type: ADD_POKEMON, payload };
+export function postPokemon(payload) {
+  return async () => {
+    await axios
+      .post(`${POKEMONS_URL}`, payload)
+      .then((res) => res.data)
+      .then((pokemon) => {
+        return pokemon;
+      });
+  };
 }
 
 export function filterByType(payload) {
@@ -81,6 +87,10 @@ export function sortByName(payload) {
 
 export function sortByAttack(payload) {
   return { type: SORT_BY_ATTACK, payload };
+}
+
+export function clearPokemon() {
+  return { type: CLEAR_POKEMON };
 }
 
 /*

@@ -1,23 +1,82 @@
 .detail_container {
+  border: 1px solid red;
+  /* dimension */
+  width: 100vw;
+  height: 95vh;
+  /* flexbox */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 25px;
+  gap: 30px;
+  /* background */
+  background: url("./background-pokeball-02.png") no-repeat;
+  background-size: cover;
+}
+
+.title_cnt {
+  /* dimension */
+  width: 30vw;
+  height: 70px;
+  text-align: center;
+  /* background */
+  background-color: var(--red);
+  border-radius: 30px;
+}
+
+.title_name {
+  /* text */
+  font-size: 45px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.items_container {
+  /* dimension */
+  width: 60vw;
+  /* flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background */
+  background-color: var(--white);
+  border-radius: 30px;
+}
+
+.items_container img {
+  width: 500px;
+  height: 500px;
 }
 
 .detail-card {
+  /* dimension */
+  height: 600px;
+  width: 600px;
+  /* flexbox */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(43, 43, 43, 0.575);
-  border-radius: 4px;
-  height: 600px;
-  width: 600px;
+  /* background */
+  background-color: var(--yellow);
+  border-radius: 30px;
 }
 
-.detail-card img {
-  height: 250px;
-  width: 250px;
+/* BUTTON */
+.back {
+  width: 180px;
+  height: 30px;
+  background: var(--blue);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-family: Kanit;
+  font-size: 16px;
+  font-weight: 200;
+  color: #fff;
+}
+
+.back:hover {
+  border: 2px solid var(--yellow);
+  color: var(--yellow);
 }

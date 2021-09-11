@@ -1,10 +1,11 @@
 import "./Home.css";
 import React, { useEffect, useState } from "react";
 import Search from "../Search/Search";
-import Buttons from "../Search/Buttons";
 import Pagination from "../Pagination/Pagination";
+import Buttons from "../Buttons/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearPokemon,
   filterByCreator,
   filterByType,
   getPokemonByName,
@@ -12,6 +13,7 @@ import {
   sortByName,
 } from "../../actions";
 import { Cards } from "../Cards/Cards";
+import NavBar from "../NavBar/NavBar";
 
 export default function Home() {
   //--- STATES ---
@@ -26,7 +28,8 @@ export default function Home() {
 
   useEffect(() => {
     setPage(1);
-  }, [pokemons]);
+    dispatch(clearPokemon());
+  }, [pokemons, dispatch]);
 
   //--- PAGINATION ---
   const indexLast = page * cardPerPage; // pag1=9, pag2-pagN=12
@@ -36,17 +39,6 @@ export default function Home() {
   const pagination = (pageNumber) => {
     setPage(pageNumber);
   };
-
-  //--- FILTERS ---
-  function handleOnFilterByType(e) {
-    e.preventDefault();
-    dispatch(filterByType(e.target.value));
-  }
-
-  function handleOnFilterByCreator(e) {
-    e.preventDefault();
-    dispatch(filterByCreator(e.target.value));
-  }
 
   //--- SORTS ---
   function handleOnSortByName(e) {
@@ -59,6 +51,17 @@ export default function Home() {
     dispatch(sortByAttack(e.target.value));
   }
 
+  //--- FILTERS ---
+  function handleOnFilterByType(e) {
+    e.preventDefault();
+    dispatch(filterByType(e.target.value));
+  }
+
+  function handleOnFilterByCreator(e) {
+    e.preventDefault();
+    dispatch(filterByCreator(e.target.value));
+  }
+
   //--- SEARCH ---
   function handleOnChange(e) {
     console.log("estoy buscando:    ", search);
@@ -66,70 +69,44 @@ export default function Home() {
     setSearch(e.target.value);
   }
 
-  function handleOnClick(e) {
+  function handleOnClickSearch(e) {
     e.preventDefault();
     console.log("el boton funciona y agarró el valor: ", search);
+    //condicional para vacio, envio alert
     dispatch(getPokemonByName(search));
     setSearch("");
   }
 
   //--- RENDER ---
   return (
-    <div className='home_container'>
-      <div className='searchButtons_container'>
-        <Search
-          search={search}
-          handleOnChange={handleOnChange}
-          handleOnClick={handleOnClick}
-        />
-        <Buttons
-          handleOnFilterByType={handleOnFilterByType}
-          handleOnFilterByCreator={handleOnFilterByCreator}
-          handleOnSortByName={handleOnSortByName}
-          handleOnSortByAttack={handleOnSortByAttack}
-        />
+    <>
+      <NavBar />
+      <div className='home_container'>
+        <div className='searchButtons_container'>
+          <Search
+            search={search}
+            handleOnChange={handleOnChange}
+            handleOnClick={handleOnClickSearch}
+          />
+          <Buttons
+            handleOnSortByName={handleOnSortByName}
+            handleOnSortByAttack={handleOnSortByAttack}
+            handleOnFilterByType={handleOnFilterByType}
+            handleOnFilterByCreator={handleOnFilterByCreator}
+          />
+        </div>
 
-        <Pagination
-          page={page}
-          cardPerPage={cardPerPage}
-          pokemons={pokemons.length}
-          pagination={pagination}
-        ></Pagination>
+        <Cards isLoading={isLoading} currentPokemons={currentPokemons} />
+
+        <div className='searchButtons_container'>
+          <Pagination
+            page={page}
+            cardPerPage={cardPerPage}
+            pokemons={pokemons.length}
+            pagination={pagination}
+          ></Pagination>
+        </div>
       </div>
-
-      <Cards isLoading={isLoading} currentPokemons={currentPokemons} />
-
-      <div className='searchButtons_container'>
-        <Pagination
-          cardPerPage={cardPerPage}
-          pokemons={pokemons.length}
-          pagination={pagination}
-        ></Pagination>
-      </div>
-    </div>
+    </>
   );
 }
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-*/
-//conecta al componente y me inyecta en las props el dispatch
-
-//import { connect } from "react-redux";
-//function Home(props) {}
-// function mapStateToProps(state) {
-//   return {
-//     count: state.count,
-//   };
-// }
-// export default connect(mapStateToProps, { increment, decrement })(Home);

@@ -8,7 +8,8 @@ import {
   FILTER_BY_CREATOR,
   SORT_BY_NAME,
   SORT_BY_ATTACK,
-  // ADD_POKEMON,
+  ADD_POKEMON,
+  CLEAR_POKEMON,
 } from "../actions/types";
 
 const initialState = {
@@ -49,7 +50,11 @@ export default function reducer(state = initialState, { type, payload }) {
         ...state,
         isLoading: payload,
       };
-
+    case CLEAR_POKEMON:
+      return {
+        ...state,
+        pokemonDetail: {},
+      };
     case FILTER_BY_TYPE:
       const typesFiltered =
         payload === "filter"
@@ -59,7 +64,6 @@ export default function reducer(state = initialState, { type, payload }) {
         ...state,
         pokemons: typesFiltered,
       };
-
     case FILTER_BY_CREATOR:
       const creatorFiltered =
         payload === "created"
@@ -70,7 +74,6 @@ export default function reducer(state = initialState, { type, payload }) {
         ...state,
         pokemons: payload === "filter" ? allPokemons : creatorFiltered,
       };
-
     case SORT_BY_NAME:
       const sortedName =
         payload === "asc"
@@ -90,7 +93,6 @@ export default function reducer(state = initialState, { type, payload }) {
         ...state,
         pokemons: sortedName,
       };
-
     case SORT_BY_ATTACK:
       const sortedAttack =
         payload === "asc"
@@ -107,6 +109,11 @@ export default function reducer(state = initialState, { type, payload }) {
       return {
         ...state,
         pokemons: sortedAttack,
+      };
+
+    case ADD_POKEMON:
+      return {
+        ...state,
       };
 
     default:

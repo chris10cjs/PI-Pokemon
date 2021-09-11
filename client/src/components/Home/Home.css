@@ -3,22 +3,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 95vh;
+  background: url("./background-pokeball.png") no-repeat;
+  background-size: cover;
 }
 
 .searchButtons_container {
-  height: 10vh;
+  width: 70vw;
+  height: 20vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 5px;
-}
-
-.cards_container {
-  width: 80vw;
-  /* background-color: yellow; */
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
+  /* border: 1px solid red; */
 }

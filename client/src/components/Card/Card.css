@@ -1,15 +1,86 @@
 .card_container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* dimension */
+  height: 150px;
+  width: 300px;
+  /* efeccts */
+  background: #fff;
+  box-shadow: -4px -4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+}
+
+.card_container:hover {
+  /* efeccts */
+  box-sizing: border-box;
+  border: 2px solid var(--yellow);
+  border-radius: 20px;
+}
+
+.card-img_cnt {
+  /* dimension */
+  height: 150px;
+  width: 150px;
+  /* flexbox */
+  display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(43, 43, 43, 0.575);
-  border-radius: 4px;
-  height: 300px;
-  width: 250px;
+  /* background */
+  /* background: url("./pokebola-01.png") no-repeat;
+  background-size: cover; */
+  background-color: var(--light-blue);
+  border-radius: 20px;
+}
+
+.card-img_cnt:hover {
+  /* background */
+  background-color: var(--yellow);
 }
 
 .card-img {
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
+}
+
+.card-detail {
+  /* dimension */
+  height: 125px;
+  margin-right: 20px;
+  /* flexbox */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.card-title {
+  /* text */
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  /* efeccts */
+  color: var(--blue);
+}
+
+.card-title span {
+  display: block;
+  text-align: right;
+  font-size: 32px;
+  color: var(--grey);
+}
+
+.card-type {
+  /* dimension */
+  width: 80px;
+  height: 20px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* efeccts */
+  background: var(--red);
+  border-radius: 10px;
+  /* text */
+  color: #fff;
 }

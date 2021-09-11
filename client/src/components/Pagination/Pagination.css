@@ -1,11 +1,51 @@
 .pagination_container {
+  /* dimension */
+  width: 335px;
+  height: 30px;
+  margin-top: 30px;
+  /* flexbox */
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
+  /* background */
+  background: var(--blue);
+  border-radius: 30px;
 }
 
 .pagination-btn {
-  width: 20px;
-  height: 20px;
+  /* default */
+  border: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  /* dimension */
+  width: 30px;
+  height: 30px;
+  /* flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue);
+}
+
+.active {
+  border-radius: 5px;
+  background-color: var(--yellow);
+}
+
+.pagination-btn p {
+  font-family: Kanit;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+}
+
+.active p {
+  color: var(--blue);
+}
+
+.pagination-btn:hover {
+  height: 40px;
+  border-radius: 5px;
 }

@@ -1,0 +1,76 @@
+.buttons_container {
+  /* dimension */
+  width: 55vw;
+  height: 80px;
+  /* flexbox */
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  /* background */
+  background: var(--blue);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.btn-all {
+  /* dimension */
+  width: 180px;
+  height: 30px;
+  /* background */
+  border: 2px solid var(--yellow);
+  background: var(--blue);
+  border-radius: 20px;
+  cursor: pointer;
+  /* text */
+  font-family: Kanit;
+  font-size: 16px;
+  font-weight: 200;
+  color: #fff;
+}
+
+.btn-all:hover {
+  background: var(--yellow);
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.btns {
+  /* dimension */
+  width: 335px;
+  height: 30px;
+  padding: 0 2em;
+  /* flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background */
+  background: var(--blue);
+  border-radius: 30px;
+}
+
+.select-btns {
+  /* default */
+  border: none;
+  /* appearance: none; */
+  outline: 0;
+  box-shadow: none;
+  background-image: none;
+  /* dimension */
+  flex: 1;
+  padding: 0 0.8em;
+  cursor: pointer;
+  /* text */
+  font-family: Kanit;
+  font-size: 16px;
+  font-weight: 200;
+  color: #fff;
+  text-align: center;
+  /* background */
+  background: var(--blue);
+  border-radius: 30px;
+}
+
+.select-btns:hover {
+  color: var(--yellow);
+  font-weight: 400;
+}

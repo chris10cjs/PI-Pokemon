@@ -4,18 +4,20 @@ import "./NavBar.css";
 
 export default function NavBar() {
   return (
-    <header className='navbar'>
-      <nav>
-        <ul className='list'>
-          <li className='list-item'>
-            <NavLink exact to='/'>
-              LOGOAPP
-            </NavLink>
-            <NavLink to='/home'>Home Pokemon</NavLink>
-            <NavLink to='/create'>Create Pokemon</NavLink>
-            <NavLink to='/about'>About me</NavLink>
-          </li>
-        </ul>
+    <header>
+      <nav className='navbar_container'>
+        <div className='list'>
+          <NavLink exact to='/'>
+            landing
+          </NavLink>
+        </div>
+        <div className='list'>
+          <NavLink to='/home'>HOME</NavLink>
+          <NavLink to='/create'>CREATE</NavLink>
+        </div>
+        <div className='list'>
+          <NavLink to='/about'>about me</NavLink>
+        </div>
       </nav>
     </header>
   );
