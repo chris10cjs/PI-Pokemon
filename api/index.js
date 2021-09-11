@@ -44,7 +44,7 @@ conn.sync({ force: true }).then(() => {
           };
         });
 
-        const typesDB = await Type.bulkCreate(typesAPI);
+        const typesDB = await Type.bulkCreate(typesAPI); // findOrCreate VEEERRR
 
         return typesDB;
       } catch (error) {

@@ -5,79 +5,123 @@ const router = Router();
 //----- API -----
 const axios = require("axios");
 const URL = "https://pokeapi.co/api/v2/pokemon/";
-const LIMIT = 40;
+const LIMIT = "?limit=40";
 
-//--- API ---
+//--- POKEMONS API ---
 const getAPI = async () => {
-  const data = (await axios.get(`${URL}?limit=${LIMIT}`)).data.results;
-  const arrayData = await Promise.all(data.map((e) => axios.get(e.url)));
+  try {
+    const data = (await axios.get(`${URL}${LIMIT}`)).data.results;
+    const arrayData = await Promise.all(data.map((e) => axios.get(e.url)));
 
-  return arrayData.map((e) => {
-    return {
-      id: e.data.id,
-      name: e.data.name,
-      image: e.data.sprites.other.dream_world.front_default,
-      hp: e.data.stats[0].base_stat,
-      attack: e.data.stats[1].base_stat,
-      defense: e.data.stats[2].base_stat,
-      speed: e.data.stats[5].base_stat,
-      height: e.data.height,
-      weight: e.data.weight,
-      types: e.data.types.map((e) => ({ name: e.type.name })),
-      created: false,
-    };
-  });
+    return arrayData.map((e) => {
+      return {
+        id: e.data.id,
+        name: e.data.name,
+        image: e.data.sprites.other["official-artwork"].front_default,
+        hp: e.data.stats[0].base_stat,
+        attack: e.data.stats[1].base_stat,
+        defense: e.data.stats[2].base_stat,
+        speed: e.data.stats[5].base_stat,
+        height: e.data.height,
+        weight: e.data.weight,
+        types: e.data.types.map((e) => ({ name: e.type.name })),
+        created: false,
+      };
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-//--- DB ---
+//--- POKEMONS DB ---
 const getDB = async () => {
-  return await Pokemon.findAll({
-    include: [
-      {
-        model: Type,
-        attributes: ["name"],
-        through: {
-          attributes: [],
+  try {
+    return await Pokemon.findAll({
+      include: [
+        {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
         },
-      },
-    ],
-  });
+      ],
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//-- API + DB --
+const getAll = async () => {
+  try {
+    const pokemonsDB = await getDB();
+    const pokemonsAPI = await getAPI();
+
+    return [...pokemonsDB, ...pokemonsAPI];
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//-- SEARCH POKEMON API BY NAME--
+const searchByNameAPI = async (name) => {
+  try {
+    const pokemonFound = (await axios.get(`${URL}${name}`)).data;
+    if (pokemonFound) {
+      return {
+        id: pokemonFound.id,
+        name: pokemonFound.name,
+        image: pokemonFound.sprites.other["official-artwork"].front_default,
+        hp: pokemonFound.stats[0].base_stat,
+        attack: pokemonFound.stats[1].base_stat,
+        defense: pokemonFound.stats[2].base_stat,
+        speed: pokemonFound.stats[5].base_stat,
+        height: pokemonFound.height,
+        weight: pokemonFound.weight,
+        types: pokemonFound.types
+          .map((e) => ({ name: e.type.name }))
+          .map((e) => e.name),
+        created: false,
+      };
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//-- SEARCH POKEMON API BY ID--
+const searchByIdAPI = async (id) => {
+  const pokemonFound = (await axios.get(`${URL}${id}`)).data;
+
+  if (pokemonFound) {
+    return {
+      id: pokemonFound.id,
+      name: pokemonFound.name,
+      image: pokemonFound.sprites.other["official-artwork"].front_default,
+      hp: pokemonFound.stats[0].base_stat,
+      attack: pokemonFound.stats[1].base_stat,
+      defense: pokemonFound.stats[2].base_stat,
+      speed: pokemonFound.stats[5].base_stat,
+      height: pokemonFound.height,
+      weight: pokemonFound.weight,
+      types: pokemonFound.types
+        .map((e) => ({ name: e.type.name }))
+        .map((e) => e.name),
+      created: false,
+    };
+  }
 };
 
 //----- GETs -----
-router.get("/", async (req, res) => {
-  const { name } = req.query;
+router.get("/", async (req, res, next) => {
   try {
-    //--- DB ---
-    const pokemonsDB = await getDB();
-    //--- API ---
-    const pokemonsAPI = await getAPI();
-
-    //-- API + DB --
-    const pokemons = [...pokemonsDB, ...pokemonsAPI];
-
-    //-- QUERY BY NAME --
-    if (name) {
-      const pokemonFound = pokemons.find(
-        (p) => p.name.toUpperCase() === name.toUpperCase()
-      );
-
-      if (!pokemonFound) {
-        res.status(404).send("The pokemon doesn't exist");
-      } else {
-        const { id, name, image, types, attack, created } = pokemonFound;
-        res.send({
-          id,
-          name,
-          image,
-          attack,
-          created,
-          types: types.map((e) => e.name),
-        });
-      }
-    } else {
-      //-- ALL POKEMONS --
-      res.send(
+    const { name } = req.query;
+    //-- ALL POKEMONS --
+    if (!name) {
+      //-- API + DB --
+      const pokemons = await getAll();
+      return res.send(
         pokemons.map((e) => ({
           id: e.id,
           name: e.name,
@@ -88,31 +132,61 @@ router.get("/", async (req, res) => {
         }))
       );
     }
-
-    //res.send(pokemonsDB);
+    //-- QUERY BY NAME --
+    else {
+      //--- DB ---
+      const pokemonsDB = await getDB();
+      const pokemonFoundDB = pokemonsDB.find(
+        (p) => p.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+      );
+      if (pokemonFoundDB) {
+        return res.send({
+          id: pokemonFoundDB.id,
+          name: pokemonFoundDB.name,
+          image: pokemonFoundDB.image,
+          types: pokemonFoundDB.types.map((e) => e.name),
+          attack: pokemonFoundDB.attack,
+          created: pokemonFoundDB.created,
+        });
+      } else {
+        const pokemonFoundAPI = await searchByNameAPI(name.toLocaleLowerCase());
+        return pokemonFoundAPI
+          ? res.send(pokemonFoundAPI)
+          : res.status(404).send("The pokemon doesn't exist");
+      }
+    }
   } catch (error) {
-    return console.log(error);
+    next(error);
   }
 });
 
 //----- GETbyID -----
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-
+router.get("/:id", async (req, res, next) => {
   try {
+    const { id } = req.params;
+    if (!id.includes("-")) {
+      const pokemonAPI = await searchByIdAPI(id);
+      return pokemonAPI
+        ? res.send(pokemonAPI)
+        : res.status(404).send("The pokemon doesn't exist");
+    }
     //--- DB ---
-    const pokemonsDB = await getDB();
-    //--- API ---
-    const pokemonsAPI = await getAPI();
-    //-- API + DB --
-    const pokemons = [...pokemonsDB, ...pokemonsAPI];
-
-    const pokemonFound = await pokemons.find((e) => e.id == id);
-    if (!pokemonFound)
-      return res.status(404).json({ Error: "The pokemon doesn't exist" });
-    return res.send(pokemonFound);
+    else {
+      const pokemonDB = await Pokemon.findByPk(id, {
+        include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
+      return pokemonDB
+        ? res.send(pokemonDB)
+        : res.status(404).send("The pokemon doesn't exist");
+    }
   } catch (error) {
-    res.send(error);
+    next(error);
   }
 });
 
