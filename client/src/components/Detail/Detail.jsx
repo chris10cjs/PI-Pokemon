@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { getPokemonDetail } from "../../actions";
 import NavBar from "../NavBar/NavBar";
 
@@ -38,7 +38,9 @@ export default function Detail() {
             <p>Weight: {weight}</p>
           </div>
         </div>
-        <button className='back'>GO BACK</button>
+        <NavLink to='/home'>
+          <button className='back'>GO BACK</button>
+        </NavLink>
       </div>
     </>
   );

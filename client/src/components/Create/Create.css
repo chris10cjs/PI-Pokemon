@@ -1,12 +1,75 @@
-.form_container {
+.create_container {
+  /* dimension */
+  height: 95vh;
+  width: 50vw;
+  margin: 0 auto;
+  /* flexbox */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 25px;
+  background-color: var(--white);
+  border: 1px solid red;
 }
 
-.form-check {
+.create-title {
+  /* dimension */
+  width: 300px;
+  height: 50px;
+  padding: 5px;
+  /* text */
+  font-family: Kanit;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  /* background */
+  background: var(--blue);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.form_container {
+  border: 1px solid red;
+  /* dimension */
+  height: 50vh;
+  width: 30vw;
+  border-radius: 25px;
+  padding: 25px;
+  /* background */
+  background-color: var(--grey);
+}
+
+.labelInput_cnt {
+  border: 1px solid red;
+  /* dimension */
+  height: 50px;
+  margin: 10px;
+  border-radius: 20px;
+  /* text */
+  font-family: Kanit;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--blue);
+  /* flexbox */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background */
+  background-color: var(--white);
+}
+
+.labelInput_cnt input {
+  /* default */
+  outline: none;
+  border: none;
+  /* dimension */
+  height: 50px;
+  width: 420px;
+  border-radius: 20px;
+}
+
+/* .form-check {
   display: flex;
 }
 
@@ -18,4 +81,26 @@
 
 .check_options {
   width: 100px;
+} */
+
+/* BUTTON CLEAR */
+.create-clear {
+  /* dimension */
+  display: "inline-block";
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  /* text */
+  font-family: Kanit;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--red);
+  border: 2px solid var(--red);
+  border-radius: 20px;
+}
+
+.create-clear:hover {
+  color: #fff;
+  background-color: var(--red);
+  cursor: pointer;
 }

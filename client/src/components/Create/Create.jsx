@@ -115,11 +115,11 @@ export default function Create() {
   return (
     <>
       <NavBar />
-      <div className='form_container'>
-        <h1>Create Pokemon</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name: </label>
+      <div className='create_container'>
+        <h3 className='create-title'>Create Pokemon</h3>
+        <form className='form_container' onSubmit={handleSubmit}>
+          <div className='labelInput_cnt'>
+            <label>NAME</label>
             <input
               onChange={handleChange}
               type='text'
@@ -132,8 +132,8 @@ export default function Create() {
               </p>
             )}
           </div>
-          <div>
-            <label>Image: </label>
+          <div className='labelInput_cnt'>
+            <label>IMAGE</label>
             <input
               onChange={handleChange}
               type='text'
@@ -141,8 +141,8 @@ export default function Create() {
               name='image'
             />
           </div>
-          <div>
-            <label>Hp: </label>
+          <div className='labelInput_cnt'>
+            <label>HP</label>
             <input
               onChange={handleChange}
               type='number'
@@ -150,17 +150,15 @@ export default function Create() {
               name='hp'
             />
           </div>
-          <div>
-            <label>Attack: </label>
+          <div className='labelInput_cnt'>
+            <label>ATTACK</label>
             <input
               onChange={handleChange}
               type='number'
               value={input.attack}
               name='attack'
             />
-          </div>
-          <div>
-            <label>Defense: </label>
+            <label>DEFENSE</label>
             <input
               onChange={handleChange}
               type='number'
@@ -168,20 +166,18 @@ export default function Create() {
               name='defense'
             />
           </div>
-          <div>
-            <label>Height: </label>
+          <div className='labelInput_cnt'>
+            <label>HEIGHT</label>
             <input
               onChange={handleChange}
               type='number'
               value={input.height}
               name='height'
             />
-          </div>
-          <div>
-            <label>Weight: </label>
+            <label>WEIGHT</label>
             <input
               onChange={handleChange}
-              type='text'
+              type='number'
               value={input.weight}
               name='weight'
             />
@@ -205,7 +201,9 @@ export default function Create() {
           </div>
         </div> */}
           <select onChange={handleSelect}>
-            <option value='filter'>TYPES</option>
+            <option size='5' value='filter'>
+              TYPES
+            </option>
             {types?.map((e) => {
               return (
                 <option key={e.id} value={e.name}>
@@ -229,10 +227,7 @@ export default function Create() {
           </div>
         ))}
 
-        <button
-          style={{ color: "red", display: "inline-block" }}
-          onClick={handleOnClick}
-        >
+        <button className='create-clear' onClick={handleOnClick}>
           CLEAR ALL
         </button>
       </div>
