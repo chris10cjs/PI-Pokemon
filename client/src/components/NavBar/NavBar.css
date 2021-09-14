@@ -1,6 +1,6 @@
 header {
   /* dimension */
-  height: 5vh;
+  height: 7vh;
   /* flexbox */
   display: flex;
   justify-content: center;
@@ -11,7 +11,6 @@ header {
 }
 .navbar_container {
   /* dimension */
-  height: 10vh;
   width: 70vw;
   /* flexbox */
   display: flex;
@@ -24,7 +23,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   /* font */
   font-size: 24px;
   font-weight: 600;
@@ -40,4 +39,8 @@ header {
 }
 .list a:hover {
   color: #84cabf;
+}
+
+.list a img {
+  width: 80px;
 }

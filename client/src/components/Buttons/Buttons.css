@@ -25,7 +25,7 @@
   font-family: Kanit;
   font-size: 16px;
   font-weight: 200;
-  color: #fff;
+  color: var(--white);
 }
 
 .btn-all:hover {
@@ -44,7 +44,7 @@
   justify-content: center;
   align-items: center;
   /* background */
-  background: var(--blue);
+  /* background: var(--blue); */
   border-radius: 30px;
 }
 
@@ -63,9 +63,10 @@
   font-family: Kanit;
   font-size: 16px;
   font-weight: 200;
-  color: #fff;
+  color: var(--white);
   text-align: center;
   /* background */
+  /* background: none; */
   background: var(--blue);
   border-radius: 30px;
 }

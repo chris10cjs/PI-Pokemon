@@ -1,5 +1,5 @@
-import React from "react";
 import "./Card.css";
+import React from "react";
 
 export const Card = ({ name, number, image, types }) => {
   return (
@@ -27,15 +27,3 @@ export const Card = ({ name, number, image, types }) => {
     </div>
   );
 };
-
-/*
-
-FORM
-
-chequed -> para limpiarlo: state local con boolean
-
-res POST -> 
-
-
-
-*/

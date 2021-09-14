@@ -1,5 +1,4 @@
 import "./Pagination.css";
-
 import React from "react";
 
 export default function Paginado({ page, cardPerPage, pokemons, pagination }) {

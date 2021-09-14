@@ -1,5 +1,7 @@
-import React from "react";
 import "./Search.css";
+import React from "react";
+
+import { BiSearchAlt } from "react-icons/bi";
 
 function Search({ search, handleOnChange, handleOnClick }) {
   return (
@@ -14,7 +16,9 @@ function Search({ search, handleOnChange, handleOnClick }) {
       ></input>
 
       <button className='search-btn' type='submit' onClick={handleOnClick}>
-        Search
+        <span>
+          <BiSearchAlt />
+        </span>
       </button>
     </form>
   );

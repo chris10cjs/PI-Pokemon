@@ -27,8 +27,6 @@
   justify-content: center;
   align-items: center;
   /* background */
-  /* background: url("./pokebola-01.png") no-repeat;
-  background-size: cover; */
   background-color: var(--light-blue);
   border-radius: 20px;
 }

@@ -15,23 +15,49 @@
 .search-input {
   outline: none;
   width: 30vw;
-  height: 30px;
+  height: 35px;
   padding-left: 15px;
-  background: #ffffff;
+  background: #fff;
   border-radius: 20px;
   border: none;
 }
 
 .search-input:focus {
   border: 2px solid var(--yellow);
+  /* text */
+  font-family: Kanit;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--blue);
+}
+
+.search-input::placeholder {
+  /* text */
+  font-family: Kanit;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--grey);
 }
 
 .search-btn {
-  width: 5vw;
+  position: relative;
+  /* width: 5vw;
   height: 30px;
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 20px; */
   border: none;
+  background: none;
+  /* text */
+  font-family: Kanit;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--blue);
+}
+
+.search-btn span {
+  position: absolute;
+  top: -9px;
+  right: 25px;
 }
 
 .search-btn:hover {

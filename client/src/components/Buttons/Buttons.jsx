@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPokemons } from "../../actions";
 import "./Buttons.css";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPokemons } from "../../redux/actions/index";
 
 function Buttons({
   handleOnFilterByType,
   handleOnFilterByCreator,
   handleOnSortByName,
   handleOnSortByAttack,
+  setSelected,
+  selected,
 }) {
   //--- STATES ---
   const dispatch = useDispatch();
@@ -15,16 +17,11 @@ function Buttons({
     types: state.types,
   }));
 
-  //--- RESET ALL ---
-  const [selected, setSelected] = useState();
-
   const handleOnClickAll = (e) => {
     e.preventDefault();
     setSelected(true);
     dispatch(getPokemons());
   };
-
-  //Nueva función que setee allPokes y se lo pase a onClick
 
   return (
     <div className='buttons_container'>
@@ -63,7 +60,9 @@ function Buttons({
           onChange={handleOnFilterByType}
           name='filterType'
         >
-          <option value='filter'>FILTER BY TYPE</option>
+          <option selected={selected} value='filter'>
+            FILTER BY TYPE
+          </option>
           {types?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
@@ -77,7 +76,9 @@ function Buttons({
           onChange={handleOnFilterByCreator}
           name='filterCreator'
         >
-          <option value='filter'>FILTER BY CREATOR</option>
+          <option selected={selected} value='filter'>
+            FILTER BY CREATOR
+          </option>
           <option value='originals'>ORIGINAL POKEMONS</option>
           <option value='created'>MY POKEMONS</option>
         </select>

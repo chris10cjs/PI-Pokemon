@@ -3,9 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 95vh;
-  background: url("./background-pokeball.png") no-repeat;
-  background-size: cover;
+  height: 93vh;
 }
 
 .searchButtons_container {

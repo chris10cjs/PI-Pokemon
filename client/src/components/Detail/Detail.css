@@ -2,16 +2,12 @@
   border: 1px solid red;
   /* dimension */
   width: 100vw;
-  height: 95vh;
+  height: 93vh;
   /* flexbox */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  /* background */
-  background: url("./background-pokeball-02.png") no-repeat;
-  background-size: cover;
 }
 
 .title_cnt {
@@ -21,13 +17,13 @@
   text-align: center;
   /* background */
   background-color: var(--red);
-  border-radius: 30px;
+  border-radius: 30px 30px 0 0;
 }
 
 .title_name {
   /* text */
-  font-size: 45px;
-  font-weight: 600;
+  font-size: 42px;
+  font-weight: 400;
   color: var(--white);
 }
 
@@ -36,7 +32,7 @@
   width: 60vw;
   /* flexbox */
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   /* background */
   background-color: var(--white);
@@ -57,15 +53,76 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   /* background */
   background-color: var(--yellow);
   border-radius: 30px;
+}
+
+.detail-card .detail-card_number {
+  display: block;
+  font-size: 100px;
+  color: var(--white);
+}
+
+.detail-card h3 {
+  margin-bottom: 50px;
+  display: block;
+  font-size: 36px;
+  color: var(--red);
+}
+
+.detail-card p {
+  display: block;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 28px;
+  color: var(--blue);
+}
+
+.detail-card .detail-spec_cnt {
+  /* dimension */
+  width: 300px;
+  /* text */
+  font-size: 24px;
+  line-height: 28px;
+  /* flexbox */
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  /* background */
+  background-color: var(--white);
+  border-radius: 15px;
+}
+
+.types {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.types .detail-types {
+  background-color: var(--red);
+  padding: 0 15px;
+  margin-top: 50px;
+  border-radius: 15px;
+}
+
+.types .detail-types span {
+  display: block;
+  /* text */
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--white);
 }
 
 /* BUTTON */
 .back {
   width: 180px;
   height: 30px;
+  border: 1px solid red;
+  margin-top: 50px;
   background: var(--blue);
   border-radius: 20px;
   border: none;
@@ -77,6 +134,8 @@
 }
 
 .back:hover {
-  border: 2px solid var(--yellow);
-  color: var(--yellow);
+  background-color: var(--yellow);
+  color: var(--blue);
+  font-weight: 500;
+  border: 2px solid var(--blue);
 }

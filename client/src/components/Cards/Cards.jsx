@@ -17,20 +17,29 @@ export const Cards = ({ isLoading, currentPokemons }) => {
         </div>
       ) : (
         <div className='cards_container'>
-          {currentPokemons?.map((e) => {
-            return (
-              <NavLink key={e.id} to={`/detail/${e.id}`}>
-                <Card
-                  id={e.id}
-                  key={e.id}
-                  name={e.name}
-                  number={e.id}
-                  image={e.image ? e.image : IMG_DEFAULT}
-                  types={e.types}
-                />
-              </NavLink>
-            );
-          })}
+          {currentPokemons.length === 0 ? (
+            <div>
+              <h2>POKEMON NOT FOUND</h2>
+              <p>
+                but don´t worry, go to <NavLink to='/create'>CREATE</NavLink>
+              </p>
+            </div>
+          ) : (
+            currentPokemons?.map((e) => {
+              return (
+                <NavLink key={e.id} to={`/detail/${e.id}`}>
+                  <Card
+                    id={e.id}
+                    key={e.id}
+                    name={e.name}
+                    number={e.id}
+                    image={e.image ? e.image : IMG_DEFAULT}
+                    types={e.types}
+                  />
+                </NavLink>
+              );
+            })
+          )}
         </div>
       )}
     </div>

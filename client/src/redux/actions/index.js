@@ -10,9 +10,9 @@ import {
   SORT_BY_NAME,
   SORT_BY_ATTACK,
   CLEAR_POKEMON,
-} from "./types";
+} from "../actions/types";
 
-import { POKEMONS_URL, TYPES_URL } from "../config/constants";
+import { POKEMONS_URL, TYPES_URL } from "../../config/constants";
 
 export function getPokemonDetail(idPokemon) {
   return async (dispatch) => {
@@ -23,7 +23,8 @@ export function getPokemonDetail(idPokemon) {
       .then((pokemon) => {
         dispatch({ type: GET_POKEMON_DETAIL, payload: pokemon });
         dispatch({ type: SET_LOADING, payload: false });
-      });
+      })
+      .catch((error) => console.log(error));
   };
 }
 
@@ -35,7 +36,12 @@ export function getPokemonByName(name) {
       .then((pokemon) => {
         dispatch({ type: GET_POKEMON_NAME, payload: pokemon });
       })
-      .catch(() => alert("pokemon not found"));
+      .catch((error) => {
+        alert(`
+      😢  POKEMON ${name} NOT FOUNT.
+      ⚠️  Please, type the name exactly.`);
+        return console.log(error);
+      });
 }
 
 export function getPokemons() {
@@ -47,7 +53,8 @@ export function getPokemons() {
       .then((pokemons) => {
         dispatch({ type: GET_POKEMONS, payload: pokemons });
         dispatch({ type: SET_LOADING, payload: false });
-      });
+      })
+      .catch((error) => console.log(error));
   };
 }
 
@@ -58,7 +65,8 @@ export function getTypes() {
       .then((res) => res.data)
       .then((pokemons) => {
         dispatch({ type: GET_TYPES, payload: pokemons });
-      });
+      })
+      .catch((error) => console.log(error));
   };
 }
 
@@ -69,7 +77,8 @@ export function postPokemon(payload) {
       .then((res) => res.data)
       .then((pokemon) => {
         return pokemon;
-      });
+      })
+      .catch((error) => console.log(error));
   };
 }
 

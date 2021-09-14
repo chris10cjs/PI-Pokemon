@@ -1,9 +1,11 @@
 import "./Home.css";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "../Search/Search";
 import Pagination from "../Pagination/Pagination";
 import Buttons from "../Buttons/Buttons";
-import { useDispatch, useSelector } from "react-redux";
+import { Cards } from "../Cards/Cards";
+import NavBar from "../NavBar/NavBar";
 import {
   clearPokemon,
   filterByCreator,
@@ -11,9 +13,7 @@ import {
   getPokemonByName,
   sortByAttack,
   sortByName,
-} from "../../actions";
-import { Cards } from "../Cards/Cards";
-import NavBar from "../NavBar/NavBar";
+} from "../../redux/actions/index";
 
 export default function Home() {
   //--- STATES ---
@@ -25,6 +25,9 @@ export default function Home() {
     pokemons: state.pokemons,
     isLoading: state.isLoading,
   }));
+
+  //--- RESET ---
+  const [selected, setSelected] = useState();
 
   useEffect(() => {
     setPage(1);
@@ -43,22 +46,26 @@ export default function Home() {
   //--- SORTS ---
   function handleOnSortByName(e) {
     e.preventDefault();
+    setSelected(false);
     dispatch(sortByName(e.target.value));
   }
 
   function handleOnSortByAttack(e) {
     e.preventDefault();
+    setSelected(false);
     dispatch(sortByAttack(e.target.value));
   }
 
   //--- FILTERS ---
   function handleOnFilterByType(e) {
     e.preventDefault();
+    setSelected(false);
     dispatch(filterByType(e.target.value));
   }
 
   function handleOnFilterByCreator(e) {
     e.preventDefault();
+    setSelected(false);
     dispatch(filterByCreator(e.target.value));
   }
 
@@ -72,7 +79,6 @@ export default function Home() {
   function handleOnClickSearch(e) {
     e.preventDefault();
     console.log("el boton funciona y agarró el valor: ", search);
-    //condicional para vacio, envio alert
     dispatch(getPokemonByName(search));
     setSearch("");
   }
@@ -93,11 +99,11 @@ export default function Home() {
             handleOnSortByAttack={handleOnSortByAttack}
             handleOnFilterByType={handleOnFilterByType}
             handleOnFilterByCreator={handleOnFilterByCreator}
+            setSelected={setSelected}
+            selected={selected}
           />
         </div>
-
         <Cards isLoading={isLoading} currentPokemons={currentPokemons} />
-
         <div className='searchButtons_container'>
           <Pagination
             page={page}

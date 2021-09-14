@@ -3,6 +3,7 @@
   --blue: #073b4c;
   --orange: #ef8200;
   --yellow: #ffd166;
+  --light-yellow: #fceac1;
   --white: rgb(235, 235, 235);
   --black: rgb(30, 30, 30);
   --red: #ef476f;
@@ -19,9 +20,9 @@ body {
   width: 100vw;
   height: 100vh;
   font-family: "Kanit", sans-serif;
-  background: var(--light-blue);
+  /* background */
+  background: var(--light-blue) url("../img/background-pokeball.png") no-repeat;
   background-size: cover;
-  /* background: linear-gradient(180deg, #84cabf 0%, rgba(132, 202, 191, 0) 100%); */
 }
 
 a {
