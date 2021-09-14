@@ -121,7 +121,7 @@ router.get("/", async (req, res, next) => {
     if (!name) {
       //-- API + DB --
       const pokemons = await getAll();
-      return res.send(
+      return res.status(200).send(
         pokemons.map((e) => ({
           id: e.id,
           name: e.name,
@@ -182,7 +182,19 @@ router.get("/:id", async (req, res, next) => {
         },
       });
       return pokemonDB
-        ? res.send(pokemonDB)
+        ? res.send({
+            id: pokemonDB.id,
+            name: pokemonDB.name,
+            image: pokemonDB.image,
+            hp: pokemonDB.hp,
+            attack: pokemonDB.attack,
+            defense: pokemonDB.defense,
+            speed: pokemonDB.speed,
+            height: pokemonDB.height,
+            weight: pokemonDB.weight,
+            types: pokemonDB.types.map((e) => e.name),
+            created: pokemonDB.created,
+          })
         : res.status(404).send("The pokemon doesn't exist");
     }
   } catch (error) {
@@ -216,3 +228,21 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
+
+/*
+
+{
+  id: pokemonDB.id,
+  name: pokemonDB.name,
+  image: pokemonDB.image,
+  hp: pokemonDB.hp,
+  attack: pokemonDB.attack,
+  defense: pokemonDB.defense,
+  speed: pokemonDB.speed,
+  height: pokemonDB.height,
+  weight: pokemonDB.weight,
+  types: pokemonDB.types.map((e) => e.name),
+  created: pokemonDB.created,
+}
+
+*/
