@@ -18,7 +18,7 @@ export default function NavBar() {
           <NavLink to='/create'>CREATE</NavLink>
         </div>
         <div className='list'>
-          <NavLink to='/about'>about me</NavLink>
+          {/* <NavLink to='/about'>about me</NavLink> */}
         </div>
       </nav>
     </header>

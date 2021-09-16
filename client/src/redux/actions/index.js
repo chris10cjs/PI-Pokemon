@@ -15,9 +15,9 @@ import {
 import { POKEMONS_URL, TYPES_URL } from "../../config/constants";
 
 export function getPokemonDetail(idPokemon) {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch({ type: SET_LOADING, payload: true });
-    await axios
+    axios
       .get(`${POKEMONS_URL}/${idPokemon}`)
       .then((res) => res.data)
       .then((pokemon) => {
@@ -29,8 +29,8 @@ export function getPokemonDetail(idPokemon) {
 }
 
 export function getPokemonByName(name) {
-  return async (dispatch) =>
-    await axios
+  return (dispatch) =>
+    axios
       .get(`${POKEMONS_URL}/?name=${name}`)
       .then((res) => res.data)
       .then((pokemon) => {
@@ -45,9 +45,9 @@ export function getPokemonByName(name) {
 }
 
 export function getPokemons() {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch({ type: SET_LOADING, payload: true });
-    await axios
+    axios
       .get(`${POKEMONS_URL}`)
       .then((res) => res.data)
       .then((pokemons) => {
@@ -59,8 +59,8 @@ export function getPokemons() {
 }
 
 export function getTypes() {
-  return async (dispatch) => {
-    await axios
+  return (dispatch) => {
+    axios
       .get(TYPES_URL)
       .then((res) => res.data)
       .then((pokemons) => {
@@ -71,8 +71,8 @@ export function getTypes() {
 }
 
 export function postPokemon(payload) {
-  return async () => {
-    await axios
+  return () => {
+    axios
       .post(`${POKEMONS_URL}`, payload)
       .then((res) => res.data)
       .then((pokemon) => {
@@ -103,7 +103,7 @@ export function clearPokemon() {
 }
 
 /*
-thunk es un middlewere que se mete en el medio y pregunta:
-  es un objeto: no hago nada.
-  es una función: llama pasandole el dispatch
+  thunk es un middlewere que se mete en el medio y pregunta:
+    es un objeto: no hago nada.
+    es una función: llama pasandole el dispatch
 */

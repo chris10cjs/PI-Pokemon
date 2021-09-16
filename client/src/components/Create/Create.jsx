@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { postPokemon } from "../../redux/actions/index";
 import NavBar from "../NavBar/NavBar";
 import validate from "./validate";
+import { useHistory } from "react-router";
 
 export default function Create() {
   //---HOOKS---
   const dispatch = useDispatch();
+  const { push } = useHistory();
+
   const { types } = useSelector((state) => ({
     types: state.types,
   }));
@@ -97,9 +100,9 @@ export default function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("el boton funciona y agarró el valor: ", input);
-
     dispatch(postPokemon(input));
     alert("Pokemon ready! 🎉");
+    push("/home");
     setInput({
       name: "",
       image: "",

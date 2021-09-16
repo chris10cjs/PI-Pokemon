@@ -19,8 +19,10 @@ export default function Home() {
   //--- STATES ---
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+
   const [page, setPage] = useState(1);
   const [cardPerPage] = useState(12);
+
   const { pokemons, isLoading } = useSelector((state) => ({
     pokemons: state.pokemons,
     isLoading: state.isLoading,
@@ -35,7 +37,7 @@ export default function Home() {
   }, [pokemons, dispatch]);
 
   //--- PAGINATION ---
-  const indexLast = page * cardPerPage; // pag1=9, pag2-pagN=12
+  const indexLast = page * cardPerPage; //
   const indexFirst = indexLast - cardPerPage; //
   const currentPokemons = pokemons.slice(indexFirst, indexLast);
 

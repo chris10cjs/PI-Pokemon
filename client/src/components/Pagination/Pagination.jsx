@@ -10,7 +10,7 @@ export default function Paginado({ page, cardPerPage, pokemons, pagination }) {
 
   return (
     <div className='pagination_container'>
-      {pageNumbers.map((number) => (
+      {pageNumbers?.map((number) => (
         <button
           className={
             page === number ? "active pagination-btn" : "pagination-btn"
