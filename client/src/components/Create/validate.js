@@ -13,7 +13,7 @@ const validate = (input) => {
   if (
     !input.image.trim() ||
     !validateUrl.test(input.image) ||
-    input.name.includes(" ")
+    input.image.includes(" ")
   ) {
     errors.image = "Invalid url";
   }

@@ -78,17 +78,17 @@ export default function reducer(state = initialState, { type, payload }) {
       const sortedName =
         payload === "asc"
           ? state.pokemons.sort(function (a, b) {
+              // charmander pikachu
               if (a.name > b.name) return 1;
               if (a.name < b.name) return -1;
               return 0;
             })
-          : payload === "desc"
-          ? state.pokemons.sort(function (a, b) {
+          : state.pokemons.sort(function (a, b) {
               if (a.name < b.name) return 1;
               if (a.name > b.name) return -1;
               return 0;
-            })
-          : state.pokemons;
+            });
+
       return {
         ...state,
         pokemons: sortedName,
@@ -97,14 +97,10 @@ export default function reducer(state = initialState, { type, payload }) {
       const sortedAttack =
         payload === "asc"
           ? state.pokemons.sort(function (a, b) {
-              if (a.attack > b.attack) return 1;
-              if (a.attack < b.attack) return -1;
-              return 0;
+              return a.attack - b.attack;
             })
           : state.pokemons.sort(function (a, b) {
-              if (a.attack < b.attack) return 1;
-              if (a.attack > b.attack) return -1;
-              return 0;
+              return b.attack - a.attack;
             });
       return {
         ...state,

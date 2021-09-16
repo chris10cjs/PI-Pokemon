@@ -5,7 +5,7 @@ const router = Router();
 router.get("/", async (req, res, next) => {
   try {
     const types = await Type.findAll();
-    res.send(types);
+    res.status(200).send(types);
   } catch (error) {
     next(error);
   }

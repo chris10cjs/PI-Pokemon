@@ -27,6 +27,13 @@ export default function Create() {
   //
   const DISABLEDSUBMIT =
     input.name === "" ||
+    input.image === "" ||
+    input.hp === "" ||
+    input.attack === "" ||
+    input.defense === "" ||
+    input.speed === "" ||
+    input.height === "" ||
+    input.weight === "" ||
     errors.hasOwnProperty("name") ||
     errors.hasOwnProperty("image") ||
     errors.hasOwnProperty("hp") ||
@@ -35,8 +42,6 @@ export default function Create() {
     errors.hasOwnProperty("height") ||
     errors.hasOwnProperty("weight") ||
     errors.hasOwnProperty("types");
-  //
-  console.log(DISABLEDSUBMIT);
 
   const DISABLEDINPUT = input.types.length > 1 ? true : false;
 
@@ -50,7 +55,6 @@ export default function Create() {
 
   //---FORM INPUTs---
   const handleChange = (e) => {
-    console.log(`${e.target.name}:${e.target.value}`);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -68,7 +72,6 @@ export default function Create() {
 
   //---FORM SELECT---
   const handleSelect = (e) => {
-    console.log(`types:${e.target.value}`);
     setInput({
       ...input,
       types: [...input.types, e.target.value],
@@ -93,21 +96,19 @@ export default function Create() {
   //---FORM SUBMIT---
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("el boton funciona y agarró el valor: ", input);
-
-    //volver hacer las validaciones
+    // console.log("el boton funciona y agarró el valor: ", input);
 
     dispatch(postPokemon(input));
     alert("Pokemon ready! 🎉");
     setInput({
       name: "",
       image: "",
-      hp: "",
-      attack: "",
-      defense: "",
-      speed: "",
-      height: "",
-      weight: "",
+      hp: 0,
+      attack: 0,
+      defense: 0,
+      speed: 0,
+      height: 0,
+      weight: 0,
       types: [],
     });
   };
