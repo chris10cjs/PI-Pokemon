@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   SET_LOADING,
   GET_POKEMONS,
@@ -10,9 +10,9 @@ import {
   SORT_BY_NAME,
   SORT_BY_ATTACK,
   CLEAR_POKEMON,
-} from "../actions/types";
+} from '../actions/types';
 
-import { POKEMONS_URL, TYPES_URL } from "../../config/constants";
+import { POKEMONS_URL, TYPES_URL } from '../../config/constants';
 
 export function getPokemonDetail(idPokemon) {
   return (dispatch) => {
@@ -71,7 +71,7 @@ export function getTypes() {
 }
 
 export function postPokemon(payload) {
-  return () => {
+  return (dispatch) => {
     axios
       .post(`${POKEMONS_URL}`, payload)
       .then((res) => res.data)

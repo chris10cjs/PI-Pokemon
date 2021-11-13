@@ -1,6 +1,6 @@
-const { LIMIT, URL } = require("../configs/constants.js");
-const { Pokemon, Type } = require("../db.js");
-const axios = require("axios");
+const { LIMIT, URL } = require('../configs/constants.js');
+const { Pokemon, Type } = require('../db.js');
+const axios = require('axios');
 
 //--- POKEMONS API ---
 const getAPI = async () => {
@@ -12,7 +12,7 @@ const getAPI = async () => {
       return {
         id: e.data.id,
         name: e.data.name,
-        image: e.data.sprites.other["official-artwork"].front_default,
+        image: e.data.sprites.other['official-artwork'].front_default,
         hp: e.data.stats[0].base_stat,
         attack: e.data.stats[1].base_stat,
         defense: e.data.stats[2].base_stat,
@@ -35,7 +35,7 @@ const getDB = async () => {
       include: [
         {
           model: Type,
-          attributes: ["name"],
+          attributes: ['name'],
           through: {
             attributes: [],
           },
@@ -67,16 +67,14 @@ const searchByNameAPI = async (name) => {
       return {
         id: pokemonFound.id,
         name: pokemonFound.name,
-        image: pokemonFound.sprites.other["official-artwork"].front_default,
+        image: pokemonFound.sprites.other['official-artwork'].front_default,
         hp: pokemonFound.stats[0].base_stat,
         attack: pokemonFound.stats[1].base_stat,
         defense: pokemonFound.stats[2].base_stat,
         speed: pokemonFound.stats[5].base_stat,
         height: pokemonFound.height,
         weight: pokemonFound.weight,
-        types: pokemonFound.types
-          .map((e) => ({ name: e.type.name }))
-          .map((e) => e.name),
+        types: pokemonFound.types.map((e) => ({ name: e.type.name })).map((e) => e.name),
         created: false,
       };
     }
@@ -93,16 +91,14 @@ const searchByIdAPI = async (id) => {
     return {
       id: pokemonFound.id,
       name: pokemonFound.name,
-      image: pokemonFound.sprites.other["official-artwork"].front_default,
+      image: pokemonFound.sprites.other['official-artwork'].front_default,
       hp: pokemonFound.stats[0].base_stat,
       attack: pokemonFound.stats[1].base_stat,
       defense: pokemonFound.stats[2].base_stat,
       speed: pokemonFound.stats[5].base_stat,
       height: pokemonFound.height,
       weight: pokemonFound.weight,
-      types: pokemonFound.types
-        .map((e) => ({ name: e.type.name }))
-        .map((e) => e.name),
+      types: pokemonFound.types.map((e) => ({ name: e.type.name })).map((e) => e.name),
       created: false,
     };
   }

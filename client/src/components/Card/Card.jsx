@@ -1,5 +1,5 @@
-import "./Card.css";
-import React from "react";
+import './Card.css';
+import React from 'react';
 
 export const Card = ({ name, number, image, types }) => {
   return (
@@ -11,8 +11,8 @@ export const Card = ({ name, number, image, types }) => {
         <div className='card-title'>
           {name.toUpperCase()}
           <p>{}</p>
-          <span>{typeof number === "number" ? `#${number}` : "created"}</span>
-          {""}
+          <span>{typeof number === 'number' ? `#${number}` : 'created'}</span>
+          {''}
         </div>
         <div>
           {types?.map((type, index) => {

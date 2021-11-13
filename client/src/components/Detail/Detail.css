@@ -1,5 +1,4 @@
 .detail_container {
-  border: 1px solid red;
   /* dimension */
   width: 100vw;
   height: 93vh;
@@ -39,9 +38,10 @@
   border-radius: 30px;
 }
 
-.items_container img {
+.items_container .img-detail {
   width: 500px;
   height: 500px;
+  margin: auto;
 }
 
 .detail-card {
@@ -121,7 +121,7 @@
 .back {
   width: 180px;
   height: 30px;
-  border: 1px solid red;
+
   margin-top: 50px;
   background: var(--blue);
   border-radius: 20px;

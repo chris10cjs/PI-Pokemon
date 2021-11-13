@@ -8,13 +8,11 @@
   gap: 10px;
   justify-content: center;
   align-items: center;
-  /* background */
-  /* background: #fec260; */
 }
 
 .search-input {
   outline: none;
-  width: 30vw;
+  width: 500px;
   height: 35px;
   padding-left: 15px;
   background: #fff;

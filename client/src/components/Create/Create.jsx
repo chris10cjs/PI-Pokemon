@@ -1,10 +1,10 @@
-import "./Create.css";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { postPokemon } from "../../redux/actions/index";
-import NavBar from "../NavBar/NavBar";
-import validate from "./validate";
-import { useHistory } from "react-router";
+import './Create.css';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { postPokemon } from '../../redux/actions/index';
+import NavBar from '../NavBar/NavBar';
+import validate from './validate';
+import { useHistory } from 'react-router';
 
 export default function Create() {
   //---HOOKS---
@@ -16,35 +16,35 @@ export default function Create() {
   }));
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
-    name: "",
-    image: "",
-    hp: "",
-    attack: "",
-    defense: "",
-    speed: "",
-    height: "",
-    weight: "",
+    name: '',
+    image: '',
+    hp: '',
+    attack: '',
+    defense: '',
+    speed: '',
+    height: '',
+    weight: '',
     types: [],
   });
 
   //
   const DISABLEDSUBMIT =
-    input.name === "" ||
-    input.image === "" ||
-    input.hp === "" ||
-    input.attack === "" ||
-    input.defense === "" ||
-    input.speed === "" ||
-    input.height === "" ||
-    input.weight === "" ||
-    errors.hasOwnProperty("name") ||
-    errors.hasOwnProperty("image") ||
-    errors.hasOwnProperty("hp") ||
-    errors.hasOwnProperty("attack") ||
-    errors.hasOwnProperty("defense") ||
-    errors.hasOwnProperty("height") ||
-    errors.hasOwnProperty("weight") ||
-    errors.hasOwnProperty("types");
+    input.name === '' ||
+    input.image === '' ||
+    input.hp === '' ||
+    input.attack === '' ||
+    input.defense === '' ||
+    input.speed === '' ||
+    input.height === '' ||
+    input.weight === '' ||
+    errors.hasOwnProperty('name') ||
+    errors.hasOwnProperty('image') ||
+    errors.hasOwnProperty('hp') ||
+    errors.hasOwnProperty('attack') ||
+    errors.hasOwnProperty('defense') ||
+    errors.hasOwnProperty('height') ||
+    errors.hasOwnProperty('weight') ||
+    errors.hasOwnProperty('types');
 
   const DISABLEDINPUT = input.types.length > 1 ? true : false;
 
@@ -68,8 +68,8 @@ export default function Create() {
           ...input,
           [e.target.name]: e.target.value,
         },
-        e.target.name
-      )
+        e.target.name,
+      ),
     );
   };
 
@@ -84,8 +84,8 @@ export default function Create() {
   //
   const handleOnClick = (e) => {
     setInput({
-      name: "",
-      image: "",
+      name: '',
+      image: '',
       hp: 0,
       attack: 0,
       defense: 0,
@@ -101,11 +101,11 @@ export default function Create() {
     e.preventDefault();
     // console.log("el boton funciona y agarró el valor: ", input);
     dispatch(postPokemon(input));
-    alert("Pokemon ready! 🎉");
-    push("/home");
+    alert('Pokemon ready! 🎉');
+    push('/home');
     setInput({
-      name: "",
-      image: "",
+      name: '',
+      image: '',
       hp: 0,
       attack: 0,
       defense: 0,
@@ -135,76 +135,35 @@ export default function Create() {
             </div>
             <div className='labelInput_cnt'>
               <label>IMAGE</label>
-              <input
-                onChange={handleChange}
-                type='text'
-                value={input.image}
-                name='image'
-              />
+              <input onChange={handleChange} type='text' value={input.image} name='image' />
               {errors.image && <p className='input-errors'>{errors.image}</p>}
             </div>
             <div className='labelInput_cnt'>
               <label>HP</label>
-              <input
-                onChange={handleChange}
-                type='number'
-                value={input.hp}
-                name='hp'
-              />
+              <input onChange={handleChange} type='number' value={input.hp} name='hp' />
               {errors.hp && <p className='input-errors'>{errors.hp}</p>}
               <label>SPEED</label>
-              <input
-                onChange={handleChange}
-                type='number'
-                value={input.speed}
-                name='speed'
-              />
+              <input onChange={handleChange} type='number' value={input.speed} name='speed' />
               {errors.speed && <p className='input-errors'>{errors.speed}</p>}
             </div>
             <div className='labelInput_cnt'>
               <label>ATTACK</label>
-              <input
-                onChange={handleChange}
-                type='number'
-                value={input.attack}
-                name='attack'
-              />
+              <input onChange={handleChange} type='number' value={input.attack} name='attack' />
               {errors.attack && <p className='input-errors'>{errors.attack}</p>}
               <label>DEFENSE</label>
-              <input
-                onChange={handleChange}
-                type='number'
-                value={input.defense}
-                name='defense'
-              />
-              {errors.defense && (
-                <p className='input-errors'>{errors.defense}</p>
-              )}
+              <input onChange={handleChange} type='number' value={input.defense} name='defense' />
+              {errors.defense && <p className='input-errors'>{errors.defense}</p>}
             </div>
             <div className='labelInput_cnt'>
               <label>HEIGHT</label>
-              <input
-                onChange={handleChange}
-                type='number'
-                value={input.height}
-                name='height'
-              />
+              <input onChange={handleChange} type='number' value={input.height} name='height' />
               {errors.height && <p className='input-errors'>{errors.height}</p>}
               <label>WEIGHT</label>
-              <input
-                onChange={handleChange}
-                type='number'
-                value={input.weight}
-                name='weight'
-              />
+              <input onChange={handleChange} type='number' value={input.weight} name='weight' />
               {errors.weight && <p className='input-errors'>{errors.weight}</p>}
             </div>
             <div className='create-cnt_btns'>
-              <select
-                disabled={DISABLEDINPUT}
-                className='types-select'
-                onChange={handleSelect}
-              >
+              <select disabled={DISABLEDINPUT} className='types-select' onChange={handleSelect}>
                 <option value='none' disabled hidden>
                   TYPES
                 </option>
@@ -216,10 +175,7 @@ export default function Create() {
                   );
                 })}
               </select>
-              <button
-                className={DISABLEDSUBMIT ? "display-none" : "btn-create"}
-                type='submit'
-              >
+              <button className={DISABLEDSUBMIT ? 'display-none' : 'btn-create'} type='submit'>
                 Create Now!
               </button>
             </div>
@@ -227,13 +183,8 @@ export default function Create() {
           <div className='position-btn'>
             {input.types?.map((typeIn, i) => (
               <div key={i}>
-                <p style={{ display: "inline-block" }}>
-                  {typeIn.toUpperCase()}
-                </p>
-                <button
-                  style={{ color: "red" }}
-                  onClick={() => handleDelete(typeIn)}
-                >
+                <p style={{ display: 'inline-block' }}>{typeIn.toUpperCase()}</p>
+                <button style={{ color: 'red' }} onClick={() => handleDelete(typeIn)}>
                   clear
                 </button>
               </div>

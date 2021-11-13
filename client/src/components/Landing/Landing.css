@@ -1,7 +1,8 @@
 .landing-background {
+  position: absolute;
   height: 100vh;
   width: 100vw;
-  background: url("../../img/background-landing.png") no-repeat;
+  background: url('../../img/background-landing.png') no-repeat;
   background-size: contain;
   display: flex;
   align-items: center;
@@ -17,9 +18,9 @@
 }
 
 .landing-title {
-  width: 600px;
+  max-width: 600px;
   height: 200px;
-  margin-right: 60px;
+  margin: 60px;
   font-size: 5em;
   line-height: 0.9em;
   text-align: right;
@@ -47,4 +48,19 @@
   background: var(--yellow);
   color: var(--blue);
   font-weight: 600;
+}
+
+@media screen and (max-width: 480px) {
+  .landing-background {
+    background: none;
+  }
+
+  .landing-title {
+    font-size: 3em;
+  }
+  .landing-btn {
+    width: 150px;
+    height: 30px;
+    margin: 60px;
+  }
 }

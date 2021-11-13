@@ -5,7 +5,7 @@
   /* dimension */
   height: 150px;
   width: 300px;
-  /* efeccts */
+  /* effeccts */
   background: #fff;
   box-shadow: -4px -4px 10px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
@@ -31,7 +31,7 @@
   border-radius: 20px;
 }
 
-.card-img_cnt:hover {
+.card_container:hover .card-img_cnt {
   /* background */
   background-color: var(--yellow);
 }

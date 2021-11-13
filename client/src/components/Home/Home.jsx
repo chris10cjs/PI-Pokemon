@@ -1,11 +1,11 @@
-import "./Home.css";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Search from "../Search/Search";
-import Pagination from "../Pagination/Pagination";
-import Buttons from "../Buttons/Buttons";
-import { Cards } from "../Cards/Cards";
-import NavBar from "../NavBar/NavBar";
+import './Home.css';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Search from '../Search/Search';
+import Pagination from '../Pagination/Pagination';
+import Buttons from '../Buttons/Buttons';
+import { Cards } from '../Cards/Cards';
+import NavBar from '../NavBar/NavBar';
 import {
   clearPokemon,
   filterByCreator,
@@ -13,12 +13,12 @@ import {
   getPokemonByName,
   sortByAttack,
   sortByName,
-} from "../../redux/actions/index";
+} from '../../redux/actions/index';
 
 export default function Home() {
   //--- STATES ---
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   const [page, setPage] = useState(1);
   const [cardPerPage] = useState(12);
@@ -73,16 +73,14 @@ export default function Home() {
 
   //--- SEARCH ---
   function handleOnChange(e) {
-    console.log("estoy buscando:    ", search);
     e.preventDefault();
     setSearch(e.target.value);
   }
 
   function handleOnClickSearch(e) {
     e.preventDefault();
-    console.log("el boton funciona y agarró el valor: ", search);
     dispatch(getPokemonByName(search));
-    setSearch("");
+    setSearch('');
   }
 
   //--- RENDER ---

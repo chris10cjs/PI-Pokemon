@@ -121,7 +121,7 @@
 /* BUTTON CLEAR */
 .create-clear {
   /* dimension */
-  display: "inline-block";
+  display: 'inline-block';
   width: 100px;
   height: 30px;
   margin-top: 20px;
@@ -150,7 +150,7 @@
 
 .btn-create {
   /* dimension */
-  display: "inline-block";
+  display: 'inline-block';
   width: 120px;
   height: 40px;
   margin: 0 10px;
@@ -165,8 +165,8 @@
 
 .btn-create:hover {
   font-weight: 500;
-  color: var(--blue);
-  background-color: var(--yellow);
+  color: var(--yellow);
+  background-color: var(--blue);
   cursor: pointer;
 }
 

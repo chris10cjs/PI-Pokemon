@@ -1,9 +1,19 @@
-import "./Search.css";
-import React from "react";
+import './Search.css';
+import React from 'react';
 
-import { BiSearchAlt } from "react-icons/bi";
+import { BiSearchAlt } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { getPokemons } from '../../redux/actions';
 
-function Search({ search, handleOnChange, handleOnClick }) {
+function Search({ search, handleOnChange, handleOnClick, setSelected }) {
+  const dispatch = useDispatch();
+
+  const handleOnClickAll = (e) => {
+    e.preventDefault();
+    setSelected(true);
+    dispatch(getPokemons());
+  };
+
   return (
     <form className='search_container'>
       <input
@@ -20,6 +30,11 @@ function Search({ search, handleOnChange, handleOnClick }) {
           <BiSearchAlt />
         </span>
       </button>
+      <div>
+        <button className='btn-all' onClick={handleOnClickAll}>
+          RESET
+        </button>
+      </div>
     </form>
   );
 }

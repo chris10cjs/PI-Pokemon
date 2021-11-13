@@ -1,21 +1,18 @@
-const { Router } = require("express");
-const { Pokemon, Type } = require("../db.js");
+const { Router } = require('express');
+const { Pokemon, Type } = require('../db.js');
 const router = Router();
-const {
-  getAll,
-  getDB,
-  searchByIdAPI,
-  searchByNameAPI,
-} = require("../controllers/index.js");
+const { getAll, getDB, searchByIdAPI, searchByNameAPI } = require('../controllers/index.js');
 
 //----- GETs -----
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const { name } = req.query;
     //-- ALL POKEMONS --
     if (!name) {
       //-- API + DB --
+
       const pokemons = await getAll();
+
       return res.status(200).send(
         pokemons.map((e) => ({
           id: e.id,
@@ -24,7 +21,7 @@ router.get("/", async (req, res, next) => {
           types: e.types.map((e) => e.name),
           attack: e.attack,
           created: e.created,
-        }))
+        })),
       );
     }
     //-- QUERY BY NAME --
@@ -32,7 +29,7 @@ router.get("/", async (req, res, next) => {
       //--- DB ---
       const pokemonsDB = await getDB();
       const pokemonFoundDB = pokemonsDB.find(
-        (p) => p.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+        (p) => p.name.toLocaleLowerCase() === name.toLocaleLowerCase(),
       );
       if (pokemonFoundDB) {
         return res.status(200).send({
@@ -56,10 +53,10 @@ router.get("/", async (req, res, next) => {
 });
 
 //----- GETbyID -----
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    if (!id.includes("-")) {
+    if (!id.includes('-')) {
       const pokemonAPI = await searchByIdAPI(id);
       return pokemonAPI
         ? res.status(200).send(pokemonAPI)
@@ -70,7 +67,7 @@ router.get("/:id", async (req, res, next) => {
       const pokemonDB = await Pokemon.findByPk(id, {
         include: {
           model: Type,
-          attributes: ["name"],
+          attributes: ['name'],
           through: {
             attributes: [],
           },
@@ -98,10 +95,9 @@ router.get("/:id", async (req, res, next) => {
 });
 
 //----- POST -----
-router.post("/", async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const { name, image, hp, attack, defense, speed, height, weight, types } =
-      req.body;
+    const { name, image, hp, attack, defense, speed, height, weight, types } = req.body;
     const newPokemon = await Pokemon.create({
       name,
       image,

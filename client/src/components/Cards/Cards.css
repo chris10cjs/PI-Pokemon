@@ -1,7 +1,6 @@
 .cards_main {
   /* dimension */
   width: 100vw;
-  height: 60vh;
   /* flexbox */
   display: flex;
   justify-content: center;
@@ -11,7 +10,7 @@
 
 .cards_container {
   /* dimension */
-  width: 70vw;
+  width: 80vw;
   padding: 50px 0;
   box-sizing: border-box;
   /* flexbox */
@@ -48,7 +47,7 @@
 }
 
 .pokeball:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 60px;
   height: 30px;
@@ -58,7 +57,7 @@
 }
 
 .pokeball:before {
-  content: "";
+  content: '';
   position: absolute;
   background-color: #fff;
   width: 10px;
@@ -77,5 +76,19 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cards_container {
+    /* dimension */
+    width: 100%;
+    padding: 50px 0;
+    box-sizing: border-box;
+    /* flexbox */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
   }
 }

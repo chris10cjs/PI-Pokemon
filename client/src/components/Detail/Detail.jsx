@@ -1,9 +1,10 @@
-import "./Detail.css";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { getPokemonDetail } from "../../redux/actions/index";
-import NavBar from "../NavBar/NavBar";
+import './Detail.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useParams } from 'react-router-dom';
+import { getPokemonDetail } from '../../redux/actions/index';
+import NavBar from '../NavBar/NavBar';
+import Pokebola from '../Card/Pokebola';
 
 export default function Detail() {
   const { id } = useParams();
@@ -11,8 +12,7 @@ export default function Detail() {
   const { pokemonDetail } = useSelector((state) => ({
     pokemonDetail: state.pokemonDetail,
   }));
-  const { name, image, hp, attack, defense, speed, height, weight, types } =
-    pokemonDetail;
+  const { name, image, hp, attack, defense, speed, height, weight, types } = pokemonDetail;
 
   useEffect(() => {
     dispatch(getPokemonDetail(id));
@@ -26,12 +26,17 @@ export default function Detail() {
           <p className='title_name'>{name?.toUpperCase()} </p>
         </div>
         <div className='items_container'>
-          <img src={image} alt={name} />
+          {!image ? (
+            <div className='img-detail'>
+              <Pokebola />
+            </div>
+          ) : (
+            <img className='img-detail' src={image} alt={name} />
+          )}
+
           <div className='detail-card'>
-            <span className='detail-card_number'>
-              {id.includes("-") ? "created" : `#${id}`}
-            </span>
-            {""}
+            <span className='detail-card_number'>{id.includes('-') ? 'created' : `#${id}`}</span>
+            {''}
             <h3>Name: {name}</h3>
             <p>HP: {hp}</p>
             <div className='detail-spec_cnt'>
