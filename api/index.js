@@ -44,11 +44,15 @@ conn.sync({ force: false}).then(() => {
           };
         });
 
-        const typesDB = await Type.bulkCreate(typesAPI); // findOrCreate VEEERRR
+        const typesDB = await Type.findOrCreate({
+          where: {
+            name: typesAPI.map((e) => e.name),
+          },
+        });
 
         return typesDB;
       } catch (error) {
-        send(error);
+        console.log(error);
       }
     };
 

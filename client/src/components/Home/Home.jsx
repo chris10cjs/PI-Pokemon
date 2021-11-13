@@ -93,6 +93,7 @@ export default function Home() {
             search={search}
             handleOnChange={handleOnChange}
             handleOnClick={handleOnClickSearch}
+            setSelected={setSelected}
           />
           <Buttons
             handleOnSortByName={handleOnSortByName}
